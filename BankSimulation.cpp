@@ -3,21 +3,30 @@
 //
 
 #include "BankSimulation.h"
+#include "SimulateTimeEvents.h"
 #include <queue>          // std::queue
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 
+
 std::ifstream data{"input.dat"};
 
 void BankSimulation::fillQueue() {
-    while (data >> order >> time) {
-        lineQueue.push(order);
-        lineQueue.push(time);
+    SimulateTimeEvents x;
+    while (data >> arrivalTime >> duration) {
         ++countPeople;
-        avgTime += time;
+        lineQueue.push(SimulateTimeEvents(true, countPeople, arrivalTime ));
+        avgTime += duration;
+        lineQueue.push(SimulateTimeEvents(false, countPeople, arrivalTime + duration ));
+
     }
         avgTime = avgTime/countPeople;
     data.close();
+    while (!lineQueue.empty()) {
+        x = lineQueue.pop();
+        std::cout << x;
+
+    }
 }
 

@@ -10,22 +10,30 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include "SimulateTimeEvents.h"
 
+class ComparisonClass {
+public:
+    bool operator() (SimulateTimeEvents a, SimulateTimeEvents b) {
+        return a.time > b.time;
+    }
+};
 
 class BankSimulation {
-private:
-    int order;
-    int time;
-    int countPeople;
-    int avgTime;
 public:
+    int arrivalTime;
+    int duration;
+    int countPeople = 0;
+    int avgTime;
+
 //    HealthTracker(double theWeight, double theFatPercent);
 //    double getWeight() const;
 //    void setWeight(double theWeight);
 //    double getFatPercent() const;
 //    void setFatPercent(double fatPercent);
 
-    std::queue<int> lineQueue;
+    std::priority_queue<SimulateTimeEvents, std::vector<SimulateTimeEvents>, ComparisonClass> lineQueue;
     std::ifstream data;
     void fillQueue();
     virtual ~BankSimulation() { };

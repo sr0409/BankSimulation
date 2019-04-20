@@ -5,11 +5,12 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <queue>
 #include "BankSimulation.h"
 #include "BankSimulation.cpp"
 
 int main(int argc, char* argv[]) {
-    std::cout << "Hello, Main!" << std::endl;
+//    std::cout << "Hello, Main!" << std::endl;
 //    std::ifstream data{"input.dat"};
 //    if (!data) {
 //        std::cerr << "Error opening input.dat..." << std::endl;
@@ -25,5 +26,6 @@ int main(int argc, char* argv[]) {
 //    }
 //
 //    data.close();
+
     return EXIT_SUCCESS;
 }
